@@ -1,0 +1,10 @@
+<!--BZM 5.5.1 Add/Edit Students  !-->
+{% extends '_base.html' %}
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="btn btn-danger text-white" onclick="history.back()">Cancel</a>
+    <input class="btn btn-success" type=submit value="Submit"/>
+  </form>
+{% endblock content %}

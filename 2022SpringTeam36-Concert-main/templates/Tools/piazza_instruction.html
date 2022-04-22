@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'piazza_instruction' course.id %}">How to connect?</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_piazza' course.id %}"> Connect to a new account </a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_piazza_default' course.id %}"> Connect to a default account</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_piazza_previous' course.id %}"> Connect to a previous account</a>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div class="card-body">
+  <p class="card-text">Connecting to Piazza will allow Concert to automatically monitor your students' activity on Piazza. </p>
+  <h5 class="card-title">Option 1: Use your Piazza credential</h5>
+  <p class="card-text"> You could give the your own piazza account id and password to Concert, we will automatically use that credential to access data from Piazza.
+</p>
+      <p class="card-text"> If this is the first time you add your piazza account to Concert, please click " Connect to a new account"</p>
+      <p class="card-text"> If you have added before and want to use that account, please click "connect to a previous account", and select the account you want to link with this course through the dropbox </p>
+
+  <h5 class="card-title">Option 2: Use our credential</h5>
+      <p class="card-text"> If you don't feel comfortable to share your own account, you can also add our piazza account into your course on piazza; then on the Concert side connect page, click connect to a default account. This action will allow Concert collecting piazza data through our piazza account. Please make sure it have the correct access on Piazza side.</p>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'piazza_instruction' course.id %}">How to Connect?</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_piazza' course.id %}"> Connect to a new account</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_piazza_default' course.id %}"> Connect to a default account</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link active" href="{% url 'add_piazza_previous' course.id %}"> Connect to a previous account</a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+  <div class="card-body">
+    <form action="{%  url 'add_piazza_previous' course.id %}" method="post">
+{% csrf_token %}
+
+   <h5>Select piazza account:</h5>
+  <select class="form-control" id="piazza_id" name="piazza_id">
+	{% for aid in auth_id %}
+
+    <option value = {{aid}} > {{ aid }} </option>
+
+    {% endfor %}
+  </select>
+    <br><input class="btn btn-primary" type="submit" value="Add" name="add_piazza">
+</form>
+  </div>
+</div>
+
+
+{% endblock content %}

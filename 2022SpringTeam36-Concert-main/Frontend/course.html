@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Course</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="concertJS.js"></script>
+    </head>
+    <header>
+        <button id="menu-button" onclick="openMenu()">Instructor <i id="menu-arrow" class="fa fa-chevron-down"></i></button>
+        <div id="banner">
+            <a href="">Concert</a>
+        </div>
+        <button id="profile-button" onclick="openProfile()">username <i id="profile-arrow" class="fa fa-chevron-down"></i> profilepic</button>
+        <div id="profile">
+            <div>
+                <a href="">Profile</a>
+            </div>
+            <hr>
+            <div>
+                <a href="">Account</a>
+            </div>
+            <hr>
+            <div>
+                <a href="">Settings</a>
+            </div>
+        </div>
+    </header>
+    <body>
+        <div id="enroll-a-student">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Enroll a Student</b>
+                </div>
+                <div class="form-element">
+                    <label for="student">Student</label>
+                    <select name="student" required>
+                        <option value="studentOne">student one</option>
+                        <option value="studentTwo">student two</option>
+                        <option value="studentThree">student three</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Enroll <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeEnrollAStudentForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="unenroll-a-student">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Unenroll "student name"</b>
+                </div>
+                <div class="form-element">
+                    Are you sure you wish to unenroll "student name"? This action cannot be undone.
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Yes <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeUnenrollAStudentForm()">No <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="add-a-module">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Add a Module</b>
+                </div>
+                <div class="form-element">
+                    <label for="module">Module</label>
+                    <select name="module" required>
+                        <option value="studentOne">module one</option>
+                        <option value="studentTwo">module two</option>
+                        <option value="studentThree">module three</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <label for="module-id">Module ID</label>
+                    <input type="text" placeholder="Enter a module ID" name="module-id" required>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Submit <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeAddAModuleForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="edit-a-module">
+            <form action="" class="form">
+            <div class="form-element">
+                    <b>Edit "module name"</b>
+                </div>
+                <div class="form-element">
+                    <label for="module">Module</label>
+                    <select name="module" required>
+                        <option value="studentOne">module one</option>
+                        <option value="studentTwo">module two</option>
+                        <option value="studentThree">module three</option>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <label for="module-id">Module ID</label>
+                    <input type="text" placeholder="Enter a module ID" name="module-id" required>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Submit <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeEditAModuleForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="delete-a-module">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Delete "module name"</b>
+                </div>
+                <div class="form-element">
+                    Are you sure you wish to delete "module name"? This action cannot be undone.
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Yes <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeDeleteForm()">No <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="coursebody">
+            <div id="menu">
+                <div>
+                    <a id="courses-link" onclick="openCourses()"><b>Courses</b> <i id="courses-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="courses">
+                        <div>
+                            <b><u>Active Courses</u></b><br>
+                            <a href="">course title</a>
+                        </div>
+                        <div>
+                            <b><u>Inactive Courses</u></b><br>
+                            <a href="">course title</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <a id="analysis-link" onclick="openAnalysis()"><b>Analysis</b> <i id="analysis-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="analysis">
+                        analysis
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <a id="help-and-feedback-link" onclick="openHelpAndFeedback()"><b>Help & Feedback</b> <i id="help-and-feedback-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="help-and-feedback">
+                        help and feedback
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard">
+                <div class="coursename">
+                    <b>course title</b>
+                </div>
+                <div class="courseoptions">
+                    <button class="edit-button" onclick="openEditForm()">Edit <i class="fa fa-pencil"></i></button>
+                    <button class="delete-button" onclick="openDeleteForm()">Delete <i class="fa fa-trash"></i></button>
+                </div>
+                <div class="enrollment-and-metric">
+                    <div class="enrollment">
+                        <div>
+                            <b>Enrollment</b>
+                        </div>
+                        <button id="enroll-a-student-button" onclick="openEnrollAStudentForm()"><i class="fa fa-plus"></i> Enroll a Student</button>
+                        <div class="student">
+                            student four
+                            <button class="unenroll-a-student-button" onclick="openUnenrollAStudentForm()">Unenroll <i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="student">
+                            student five
+                            <button class="unenroll-a-student-button" onclick="openUnenrollAStudentForm()">Unenroll <i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="student">
+                            student six
+                            <button class="unenroll-a-student-button" onclick="openUnenrollAStudentForm()">Unenroll <i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="student">
+                            student seven&nbsp
+                            <button class="unenroll-a-student-button" onclick="openUnenrollAStudentForm()">Unenroll <i class="fa fa-times"></i></button>
+                        </div>
+                        <div class="student">
+                            student eight
+                            <button class="unenroll-a-student-button" onclick="openUnenrollAStudentForm()">Unenroll <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <label for="metric">Metric:</label>
+                        <select id="metric" name="metric">
+                            <option value="x">Number of Enrolled Students</option>
+                            <option value="y">y</option>
+                            <option value="z">z</option>
+                        </select>
+                        <canvas id="chart"></canvas>
+                        <script>
+                            var xValues = ["116", "216", "316", "416", "516"];
+                            var yValues = [10, 20, 30, 40, 50];
+                            var barColors = ["red", "green", "blue", "yellow", "purple"];
+
+                            new Chart("chart", {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        position: "right",
+                                        labels: {
+                                            fontColor: "#000000",
+                                            usePointStyle: true
+                                        }
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {beginAtZero: true}
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="modules">
+                    <b>Modules</b>
+                    <div>
+                        <button id="add-a-module-button" onclick="openAddAModuleForm()"><i class="fa fa-plus"></i> Add a Module</button>
+                    </div>
+                    <div class="module">
+                        module one<br>
+                        module logo
+                        <div>
+                            <button class="edit-a-module-button" onclick="openEditAModuleForm()">Edit <i class="fa fa-pencil"></i></button>
+                            <button class="delete-a-module-button" onclick="openDeleteAModuleForm()">Delete <i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="module">
+                        module two<br>
+                        module logo
+                        <div>
+                            <button class="edit-a-module-button" onclick="openEditAModuleForm()">Edit <i class="fa fa-pencil"></i></button>
+                            <button class="delete-a-module-button" onclick="openDeleteAModuleForm()">Delete <i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="edit">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Edit "course title"</b>
+                </div>
+                <div class="form-element">
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="Enter a name" name="name" required>
+                </div>
+                <div class="form-element">
+                    <label for="description">Description</label>
+                    <input type="text" placeholder="Enter a description" name="description" required>
+                </div>
+                <div class="form-element">
+                    <label for="start">Start Date</label>
+                    <input type="date" name="start" required>
+                </div>
+                <div class="form-element">
+                    <label for="end">End Date</label>
+                    <input type="date" name="end" required>
+                </div>
+                <div class="form-element">
+                    <label for="semester">Semester</label>
+                    <input type="radio" id="fall" name="semester" value="fall">
+                    <label for="fall">Fall</label>
+                    <input type="radio" id="spring" name="semester" value="spring">
+                    <label for="spring">Spring</label>
+                </div>
+                <div class="form-element">
+                    <label for="semester-year">Semester Year</label>
+                    <input type="number" name="semester-year" min="2022" max="2099" value="2022" required>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Submit <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeEditForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="delete">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Delete "course title"</b>
+                </div>
+                <div class="form-element">
+                    Are you sure you wish to delete "course title"? This action cannot be undone.
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Yes <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeDeleteForm()">No <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <a href="">About</a>
+        <a href="">Concert</a>
+        <a href="">Contact</a>
+    </footer>
+</html>

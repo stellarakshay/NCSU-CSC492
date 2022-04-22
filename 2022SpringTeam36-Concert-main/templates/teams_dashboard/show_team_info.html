@@ -1,0 +1,21 @@
+{% extends 'team_dashboard_base.html' %}
+{% block title %} Teamwork Analysis Dashboard - Show Team Information{%endblock title%}
+{% block content %}
+{% if error %}
+<div class = "alert alert-danger" style="display:inline-block; margin-bottom: 50px" role="alert">
+    {{error}}
+</div>
+{% else %}
+{%load plotly_dash%}
+ <!-- The charts part -->
+<input style="margin-top: 50px" class="btn-lg btn-primary" type="button" value="Back to All At-risk Teams" onclick="history.back()">
+ <div style="width: 70%; margin-bottom: 30px; ">
+<!--     <h3 style="margin-top: 20px">More about team {{team_name}}</h3> -->
+ <h3 style="margin-top: 20px">More about This Team</h3>
+    {% plotly_header %}
+    {% plotly_direct name="team_graphs" %}
+    {% plotly_footer %}
+ </div>
+
+{% endif %}
+{% endblock content %}

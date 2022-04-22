@@ -1,0 +1,92 @@
+{% extends 'team_dashboard_base.html' %}
+{% block title %} Teamwork Analysis Dashboard - Show At-risk Teams{%endblock title%}
+{% block below_menue %}
+<div class="alert alert-success">
+	<h3>Course Average</h3>
+<table class='table'>
+  <tr>
+    <th scope='col'>Criteria</th>
+    <th scope='col'>Total</th>
+    <th scope='col'>Difference</th>
+    <th scope='col'>Normalized Difference</th>
+  </tr>
+	{% for row in course_averages %}
+  <tr>
+	{% for item in row %}
+
+    <td>{{item}}</td>
+	{% endfor %}
+  </tr>
+	{% endfor %}
+</table>
+</div>
+{% endblock below_menue %}
+
+{% block content %}
+{% if error %}
+<div class = "alert alert-danger" style="display:inline-block; margin-bottom: 50px" role="alert">
+	{{error}}
+</div>
+{% else %}
+<input style="margin-top: 50px" class="btn-lg btn-primary" type="button" value="Back to All Charts" onclick="history.back()">
+
+
+
+<h1 style="margin-top: 10px; margin-bottom: 30px">Filtered Teams</h1>
+{% for team_name, team_link, emails, subject, content, team_details in filtered_teams %}
+	
+<form method="post" id='dashboard_form' action="{% url 'show_team_info' %}">
+	{% csrf_token %} 
+
+	<!-- Information to pass to next page -->
+	<input style="display: none;" name="team_name" value="{{team_name}}">
+	<input style="display: none;" name="emails" value="{{emails}}">
+	<input style="display: none;" name="course_id" value="{{course_id}}">
+	<input style="display: none;" name="start_date" value="{{start_date}}">
+	<input style="display: none;" name="end_date" value="{{end_date}}">
+
+
+
+
+<div class = "alert alert-info" style="display:inline-block; margin-bottom: 50px; float: left; width: 45%; margin-left: 20px;" role="alert">
+	<!-- <h3> {{ team_name }}</h3> 
+	<a class="btn btn-secondary" href="{{team_link}}"> Link to GitHub Repo </a>
+	
+	<a class="btn btn-primary" href="mailto:{{emails}}?subject={{subject}} &body={{content}}"> Send An Email to Members </a> -->
+
+
+	<!-- Anonymous information -->
+	<h3> Team Name removed for Anonymization </h3> 
+	<a class="btn btn-secondary" href="https://github.ncsu.edu"> Link to GitHub Repo </a>
+	
+	<a class="btn btn-primary" href="mailto:example@ncsu.edu?subject={{subject}} &body={{content}}"> Send An Email to Members </a>
+	
+
+	<table class='table'>
+  <tr>
+    <th scope='col'>Criteria</th>
+    <th scope='col'>Total</th>
+    <th scope='col'>Difference</th>
+    <th scope='col'>Normalized Difference</th>
+  </tr>
+	{% for row in team_details %}
+  <tr>
+	{% for item in row %}
+
+    <td>{{item}}</td>
+	{% endfor %}
+  </tr>
+	{% endfor %}
+</table>
+
+<button style="margin-top: 10px" type="submit" class="btn btn-primary" >View Change-by-time Charts for This Team 
+<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="submit-spinner" style="display: none" ></span>
+</button>
+</form>
+
+</div>
+
+
+{% endfor %}
+{% endif %}
+{% endblock content %}

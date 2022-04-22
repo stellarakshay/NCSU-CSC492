@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Instructor Dashboard</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="concertJS.js"></script>
+    </head>
+    <header>
+        <button id="menu-button" onclick="openMenu()">Instructor <i id="menu-arrow" class="fa fa-chevron-down"></i></button>
+        <div id="banner">
+            <a href="">Concert</a>
+        </div>
+        <button id="profile-button" onclick="openProfile()">username <i id="profile-arrow" class="fa fa-chevron-down"></i> profilepic</button>
+        <div id="profile">
+            <div>
+                <a href="">Profile</a>
+            </div>
+            <hr>
+            <div>
+                <a href="">Account</a>
+            </div>
+            <hr>
+            <div>
+                <a href="">Settings</a>
+            </div>
+        </div>
+    </header>
+    <body>
+        <div id="add-a-course">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Add a Course</b>
+                </div>
+                <div class="form-element">
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="Enter a name" name="name" required></label>
+                </div>
+                <div class="form-element">
+                    <label for="description">Description</label>
+                    <input type="text" placeholder="Enter a description" name="description" required>
+                </div>
+                <div class="form-element">
+                    <label for="start">Start Date</label>
+                    <input type="date" name="start" required>
+                </div>
+                <div class="form-element">
+                    <label for="end">End Date</label>
+                    <input type="date" name="end" required>
+                </div>
+                <div class="form-element">
+                    <label for="semester">Semester</label>
+                    <input type="radio" id="fall" name="semester" value="fall">
+                    <label for="fall">Fall</label>
+                    <input type="radio" id="spring" name="semester" value="spring">
+                    <label for="spring">Spring</label>
+                </div>
+                <div class="form-element">
+                    <label for="semester-year">Semester Year</label>
+                    <input type="number" name="semester-year" min="2022" max="2099" value="2022" required>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Submit <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeAddACourseForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="body">
+            <div id="menu">
+                <div>
+                    <a id="courses-link" onclick="openCourses()"><b>Courses</b> <i id="courses-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="courses">
+                        <div>
+                            <b><u>Active Courses</u></b><br>
+                            <a href="">course title</a>
+                        </div>
+                        <div>
+                            <b><u>Inactive Courses</u></b><br>
+                            <a href="">course title</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <a id="analysis-link" onclick="openAnalysis()"><b>Analysis</b> <i id="analysis-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="analysis">
+                        analysis
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <a id="help-and-feedback-link" onclick="openHelpAndFeedback()"><b>Help & Feedback</b> <i id="help-and-feedback-arrow" class="fa fa-chevron-down"></i></a>
+                    <div id="help-and-feedback">
+                        help and feedback
+                    </div>
+                </div>
+            </div>
+            <div id="dashboard">
+                <div id="search">
+                    <button id="add-a-course-button" onclick="openAddACourseForm()"><i class="fa fa-plus"></i> Add a Course</button>
+                    <form id="search-form" action="">
+                        <input id="search-bar" type="text" placeholder="Search courses...">
+                        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="active-courses">
+                    <b>Active Courses</b>
+                    <div class="course">
+                        <div class="analysis">
+                            <label for="metric">Metric:</label>
+                            <select id="metric" name="metric">
+                                <option value="x">Number of Enrolled Students</option>
+                                <option value="y">y</option>
+                                <option value="z">z</option>
+                            </select>
+                            <canvas id="chart"></canvas>
+                            <script>
+                                var xValues = ["116", "216", "316", "416", "516"];
+                                var yValues = [10, 20, 30, 40, 50];
+                                var barColors = ["red", "green", "blue", "yellow", "purple"];
+
+                                new Chart("chart", {
+                                    type: "bar",
+                                    data: {
+                                        labels: xValues,
+                                        datasets: [{
+                                            backgroundColor: barColors,
+                                            data: yValues
+                                        }]
+                                    },
+                                    options: {
+                                        legend: {
+                                            position: "right",
+                                            labels: {
+                                                fontColor: "#000000",
+                                                usePointStyle: true
+                                            }
+                                        },
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {beginAtZero: true}
+                                            }]
+                                        }
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="name">
+                            <a href="">course title</a>
+                        </div>
+                        <div class="options">
+                            <button class="edit-button" onclick="openEditForm()">Edit <i class="fa fa-pencil"></i></button>
+                            <button class="delete-button" onclick="openDeleteForm()">Delete <i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="inactive-courses">
+                    <b>Inactive Courses</b>
+                    <div class="course">
+                        <div class="analysis">
+                        <label for="metric">Metric:</label>
+                            <select id="metric" name="metric">
+                                <option value="x">x</option>
+                                <option value="y">y</option>
+                                <option value="z">z</option>
+                            </select>
+                        </div>
+                        <div class="name">
+                            <a href="">course title</a>
+                        </div>
+                        <div class="options">
+                            <button class="edit-button" onclick="openEditForm()">Edit <i class="fa fa-pencil"></i></button>
+                            <button class="delete-button" onclick="openDeleteForm()">Delete <i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="edit">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Edit "course title"</b>
+                </div>
+                <div class="form-element">
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="Enter a name" name="name" required>
+                </div>
+                <div class="form-element">
+                    <label for="description">Description</label>
+                    <input type="text" placeholder="Enter a description" name="description" required>
+                </div>
+                <div class="form-element">
+                    <label for="start">Start Date</label>
+                    <input type="date" name="start" required>
+                </div>
+                <div class="form-element">
+                    <label for="end">End Date</label>
+                    <input type="date" name="end" required>
+                </div>
+                <div class="form-element">
+                    <label for="semester">Semester</label>
+                    <input type="radio" id="fall" name="semester" value="fall">
+                    <label for="fall">Fall</label>
+                    <input type="radio" id="spring" name="semester" value="spring">
+                    <label for="spring">Spring</label>
+                </div>
+                <div class="form-element">
+                    <label for="semester-year">Semester Year</label>
+                    <input type="number" name="semester-year" min="2022" max="2099" value="2022" required>
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Submit <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeEditForm()">Cancel <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+        <div id="delete">
+            <form action="" class="form">
+                <div class="form-element">
+                    <b>Delete "course title"</b>
+                </div>
+                <div class="form-element">
+                    Are you sure you wish to delete "course title"? This action cannot be undone.
+                </div>
+                <div class="form-element">
+                    <button type="submit" class="submit-button">Yes <i class="fa fa-check"></i></button>
+                    <button class="cancel-button" onclick="closeDeleteForm()">No <i class="fa fa-times"></i></button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <a href="">About</a>
+        <a href="">Concert</a>
+        <a href="">Contact</a>
+    </footer>
+</html>

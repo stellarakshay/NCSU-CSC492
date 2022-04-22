@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% block content %}
+<br action="{% url 'interface' %}" method="post" xmlns="http://www.w3.org/1999/html">
+{% csrf_token %}
+
+    <br>
+<p>
+    <h1>All Courses</h1>
+ </p>
+    <br>
+    <div class="card-deck">
+    {% for course in course_list %}
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+
+         <h5 class="card-header" >{{ course.semester_year}}{{ course.semester }}</h5>
+
+  <div class="card-body">
+    <h5 class="card-title">{{ course.name }}</h5>
+
+    <p class="card-text">{{ course.description }}</p>
+    <a href="{% url 'manage_enrollment' course.id %}" class="btn btn-outline-light">view data</a>
+
+
+  </div>
+</div>
+
+    {% endfor %}
+     </div>
+
+{% endblock content %}

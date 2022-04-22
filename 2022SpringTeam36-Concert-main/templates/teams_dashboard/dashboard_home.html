@@ -1,0 +1,50 @@
+<!--BZM 5.5.3 Add/View/Edit Dashboard !-->
+{% extends 'team_dashboard_base.html' %}
+
+{% block title %} Teamwork Analysis Dashboard - Home{%endblock title%}
+{% block content %}
+
+<form method="post" id='dashboard_form' action="{% url 'show_charts' %}">
+
+{% csrf_token %} 
+<div class="form-group" style="margin-bottom: 30px; margin-top: 30px" type="">
+  <h3>Select course:</h3>
+  <select class="form-control" id="course" name="course">
+	{% for course_id, course_name in course_list %}
+    
+    <option value = {{course_id}} > {{ course_name }} </option>
+    
+    {% endfor %}
+  </select>
+</div>
+
+
+{% for chart_text, chart_name in chart_options %}
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="{{chart_name}}">
+  <label class="form-check-label" for="flexCheckChecked">
+    {{chart_text}}
+  </label>
+</div>
+{% endfor %}
+
+<h3 style="margin-top: 30px; margin-bottom: 30px">Select the time range to show data:</h3>
+<div class="form-group row">
+  <label for="start_date" class="col-2 col-form-label" >Start From</label>
+  <div class="col-10">
+    <input class="form-control" type="date" id="start_date" name="start_date" required>
+  </div>
+  <label for="end_date" class="col-2 col-form-label" re>End At</label>
+  <div class="col-10">
+    <input class="form-control" type="date" id="end_date" name="end_date" required>
+  </div>
+</div>
+
+<button id="submit-btn" style="margin-top: 50px" type="submit" class="btn btn-primary" onclick="save_inputs()">Show Course Charts 
+<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="submit-spinner" style="display: none" ></span>
+</button>
+</div>
+
+</form>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% block content %}
+<form action="{%  url 'oauth' course.id %}" method="post">
+{% csrf_token %}
+    <label for="client_id">Client ID: </label>
+    <input id="client_id" class="form-control" type="text" name="client_id" >
+    <label for="client_secrete">Client Secrete: </label>
+    <input id="client_secrete" type="text" class="form-control" name="client_secrete" >
+ <label for="org">Github Organization: </label>
+    <input id="org" type="text" class="form-control"name="org" >
+    <label>Start Date:</label>
+    <input id="start_date" class="form-control" name="start_date" type=date>
+    <div class="form-group">
+    <label>End Date:</label>
+    <input id="end_date" class="form-control" name="end_date" type=date>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Authorize">
+
+</form>
+{% endblock content %}

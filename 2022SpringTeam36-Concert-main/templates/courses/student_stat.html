@@ -1,0 +1,26 @@
+<!-- BZM 5.4.2 Student View
+BZM 5.5.1 Add/Edit Students (view student stats for one student)  !-->
+{% extends '_base.html' %}
+{% block content %}
+  {% csrf_token %}
+  <div class="card-deck">
+    <div class="card text-center text-white bg-primary mb-3" style="max-width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Total Piazza Posts</h5>
+        <p class="card-text">{{ piazza }}</p>
+      </div>
+    </div>
+    <div class="card text-center text-white bg-primary mb-3" style="max-width: 16rem;">
+      <div class="card-body">
+        <h5 class="card-title">Total Github Commits</h5>
+        <p class="card-text">{{ github }}</p>
+      </div>
+    </div>
+    <div class="card text-center text-white bg-primary mb-3" style="max-width: 16rem;">
+      <div class="card-body">
+        <h5 class="card-title">Total MDH Tickets</h5>
+        <p class="card-text">{{ mdh }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

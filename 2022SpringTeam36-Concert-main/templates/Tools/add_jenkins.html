@@ -1,0 +1,10 @@
+{% extends '_base.html' %}
+{% block content %}
+
+
+<form action="{%  url 'add_jenkins' course.id %}" method="post">
+{% csrf_token %}
+    <input class="btn btn-primary" type="submit" value="generate token and send it to me" name="add_jenkins">
+</form>
+
+{% endblock content %}

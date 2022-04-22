@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'add_github' course.id %}"> Authorize</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'git_instruction' course.id %}">How to Authorize?</a>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div class="card-body">
+    <form action="{%  url 'add_github' course.id %}" method="post">
+{% csrf_token %}
+
+   <label for="client_id">Client ID: </label>
+    <input id="client_id" class="form-control" type="text" name="client_id" >
+    <label for="client_secrete">Client Secrete: </label>
+    <input id="client_secrete" type="text" class="form-control" name="client_secrete" >
+ <label for="org">Github Organization: </label>
+    <input id="org" type="text" class="form-control"name="org" >
+    <br><input class="btn btn-primary" type="submit" value="Add">
+</form>
+  </div>
+</div>
+
+
+{% endblock content %}

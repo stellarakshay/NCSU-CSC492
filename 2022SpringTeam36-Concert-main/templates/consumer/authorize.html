@@ -1,0 +1,10 @@
+<form action="{%  url 'authorize' %}" method="post">
+{% csrf_token %}
+
+   <label for="client_id">client ID: </label>
+    <input id="client_id" class="form-control" type="text" name="client_id" >
+    <label for="client_secrete">client secrete: </label>
+    <input id="client_secrete" type="text" class="form-control" name="client_secrete" >
+    <br><input class="btn btn-primary" type="submit" value="Add" name="authorize">
+
+</form>

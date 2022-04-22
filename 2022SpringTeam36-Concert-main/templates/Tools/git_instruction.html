@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'add_github' course.id %}"> Authorize</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'git_instruction' course.id %}">How to Authorize?</a>
+      </li>
+    </ul>
+  </div>
+</div>
+  <div class="card-body">
+  <p class="card-text">Connecting to GitHub will allow Concert to automatically monitor your students' repositories and activity. The data analyzed will include their commit infromation, comments, and code.</p>
+  <h5 class="card-title">Step 1: Create an github Organization</h5>
+  <p class="card-text">First, begin by creating a GitHub organization for the course that is included on for all the students' repositories.You have to be the owner of students' repositoies in order to add them into your organization.
+</p>
+  <p class="card-text">After you create the organization,go to the setting page of that organization, click developer settings->oauth apps->new oauth app.</p>
+  <h5 class="card-title">Step 2: Create an Oauth application</h5>
+  <p class="card-text">Then, fill out the form like the following, and click register application:</p>
+    <img src="https://media.github.ncsu.edu/user/10666/files/ec096400-121e-11ec-9a77-9668edc7baa7" class="img-fluid" >
+       <h5 class="card-title">Step 3: Add Oauth information to Concert</h5>
+  <p class="card-text">Copy the client id and client secrete from the Github and go back to Concert, enter those information and the name of your organization, then click add.
+
+You will be redirected to the Github authorization page, click authorize to finish the authorization process.</p>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}

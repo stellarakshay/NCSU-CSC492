@@ -1,0 +1,30 @@
+<!--BZM 5.4.2 Student View !-->
+{% extends '_base.html' %}
+{% block content %}
+<br action="{% url 'interface' %}" method="post" xmlns="http://www.w3.org/1999/html">
+{% csrf_token %}
+    <br>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Course Name</th>
+            <th scope="col"> </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for enrollment in enrollment_list %}
+    <tr>
+        <th > {{enrollment.get_course.name}}</th>
+
+
+        <td>
+            <a class="btn btn-primary" href="{% url 'view_student_stat' enrollment.id %}" role="button"> view </a>
+        </td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</form>
+{% endblock content %}

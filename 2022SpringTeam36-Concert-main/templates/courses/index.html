@@ -1,0 +1,35 @@
+{% extends '_base.html' %}
+{% block content %}
+<!--     {% if latest_question_list %}
+    <ul>
+    {% for course in course_list %}
+        <li><a href="/courses/{{ course.id }}/">{{ course.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Instructor</th>
+
+    </tr>
+    {% for course in course_list %}
+    {% if user.username == course.instructor %}
+    <tr> 
+        <td>{{ course.course_num}} </td>
+        <td>{{ course.name }} </td>
+        <td>{{ course.instructor }} </td>
+
+    </tr>
+    {% endif %}
+    {% endfor %}
+<form method="get" action="{% url 'search_course' %}">
+  Search Courses:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+</table>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% block content %}
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'detail' course_id %}">Course Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'manage_tool' course_id %}">Manage Tools</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'manage_enrollment' course_id %}">Manage Enrollment</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-body">
+    <a class="btn btn-success btn-lg " href="{% url 'enroll' course_id %}">Enroll Student(s)</a></li>
+    <a class="btn btn-primary btn-lg " href="{% url 'view_enrolled_student' course_id %}">View Enrollment</a></li>
+    <br><br><table class="table">
+      <tr>
+        <th>Student Email</th>
+        <th>Enrolled Time</th>
+        <th>Actions</th>
+      </tr>
+      <tboday>
+        {% for student in student_list %}
+          <tr>
+            <td>{{ student.student_email}}</td>
+            <td>{{ student.timestamp }}</td>
+            <td>
+              <a class="btn btn-primary" href="{% url 'view_student_stat' student.id %}" role="button">View</a>
+              <a class="btn btn-danger" href="{% url 'enrollment_delete' student.id %}" role="button">Unenroll</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tboday>
+    </table>
+  </div>
+{% endblock content %}

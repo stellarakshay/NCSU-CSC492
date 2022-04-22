@@ -1,0 +1,87 @@
+<!-- BZM 5.5.2 Add/Edit Module
+BZM - DEV - Tool management page. Loads the tool data based on what the user has previously set up (see concert/views/Tools.py)  !-->
+{% extends '_base.html' %}
+{% block content %}
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'detail' course.id %}">Course Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'manage_tool' course.id %}">Manage Tools</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'manage_enrollment' course.id %}">Manage Enrollment</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-deck">
+      {% if github is None %}
+        <div class="card text-white bg-danger mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/83d47b00-1d12-11ec-970e-54f01a74b8e0" ,style="width:340px;height:180px;">
+          <div class="card-body">
+            <h5 class="card-title">Github</h5>
+            <p class="card-text">Not supported yet, please click the Authorize button to support Github data collection</p>
+            <a href="{% url 'add_github' course.id %}" class="btn btn-outline-light">Authorize</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="card text-white bg-success mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/11ad6780-1d0d-11ec-91b1-27cf7343fd5e",style="width:340px;height:180px;" >
+          <div class="card-body">
+            <h5 class="card-title">Github</h5>
+            <p class="card-text">Supported</p>
+            <a href="{% url 'add_github' course.id %}" class="btn btn-outline-light">Delete</a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if piazza is None %}
+        <div class="card text-white bg-danger mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/ba18f700-1d20-11ec-99bf-416d5146f6f9",style="width:340px;height:180px;">
+          <div class="card-body">
+            <h5 class="card-title">Piazza</h5>
+            <p class="card-text">Not supported yet, please click the Authorize button to support Piazza data collection</p>
+            <a href="{% url 'piazza_instruction' course.id %}" class="btn btn-outline-light">Authorize</a>
+            <a href="{% url 'piazza_offline' course.id %}" class="btn btn-outline-light">Add Offline Data</a>
+            <a href="{% url 'piazza_posts' course.id %}" class="btn btn-outline-light">View Offline Data</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="card text-white bg-success mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/ba18f700-1d20-11ec-99bf-416d5146f6f9",style="width:340px;height:180px;">
+          <div class="card-body">
+            <h5 class="card-title">Piazza</h5>
+            <p class="card-text">Supported. You can click View Data to see what we have collected so far</p>
+            <a href="{% url 'piazza_posts' course.id %}" class="btn btn-outline-light">View Data</a>
+            <a href="{% url 'tool_delete' piazza.id %}" class="btn btn-outline-danger">Delete</a>
+            <a href="{% url 'piazza_offline' course.id %}" class="btn btn-outline-light">Add Offline data</a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if jenkins is None %}
+        <div class="card text-white bg-danger mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/0b9621ea-ec07-4f7d-866d-31b0cc3641e1",style="width:340px;height:40px;">
+          <div class="card-body">
+            <h5 class="card-title">Jenkins</h5>
+            <p class="card-text">Not supported yet, please click the Authorize button to support Jenkins data collection</p>
+            <a href="{% url 'add_jenkins' course.id %}" class="btn btn-outline-light">Authorize</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="card text-white bg-success mb-3" style="max-width: 16rem;">
+          <img class="card-img-top" src="https://media.github.ncsu.edu/user/10666/files/0b9621ea-ec07-4f7d-866d-31b0cc3641e1",style="width:340px;height:40px;">
+          <div class="card-body">
+            <h5 class="card-title">Jenkins</h5>
+            <p class="card-text">Supported. You can click View Data to see what we have collected so far</p>
+            <a href="{% url 'tool_delete' jenkins.id %}" class="btn btn-outline-danger">Delete</a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block content %}
+    <form action="{%  url 'piazza_offline' course.id %}" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <table>
+      <tr><td>Json File:</td><td><input type="file" name="json_file" /></td></tr>
+        <tr><td>CSV File:</td><td><input type="file" name="csv_file" /></td></tr>
+    </table>
+      <input type="submit" value="Submit" class = "float_right button_input" />
+    </form>
+{% endblock content %}

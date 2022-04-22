@@ -1,0 +1,50 @@
+<!-- BZM 5.4.1 Instructor View !-->
+{% extends '_base.html' %}
+{% block content %}
+  <div action="{% url 'interface' %}" method="post" xmlns="http://www.w3.org/1999/html"></div>
+  {% csrf_token %}
+  <a class="btn btn-success btn-lg" href="{% url 'create_course' %}">Create a Course</a>
+  <a class="btn btn-secondary btn-lg" href="{% url 'dashboard_home' %}">Teamwork Analysis Dashboard</a>
+  <p>
+    <h3>Active Courses</h3>
+  </p>
+  <div class="card-deck d-flex flex-nowrap" style="overflow-x: scroll;">
+    {% for course in course_list %}
+      {% if user.id == course.user_id %}
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem; min-width: 18rem;">
+          <a class="text-white" href="{% url 'detail' course.id %}">
+            <h5 class="card-header">{{ course.name }} - {{ course.semester }} {{ course.semester_year }}</h5>
+          </a>
+          <div class="card-body bg-white text-secondary" style="border-radius: 2px;">
+            <p class="card-title">{{ course.description }}</p>
+            <div class="d-flex justify-content-end">
+              <a class="btn btn-warning text-white mr-1" href="{% url 'edit' course.id %}" role="button">Edit</a>
+              <a class="btn btn-danger float-right" href="{% url 'delete' course.id %}" role="button">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <p>
+    <h3>Inactive Courses</h3>
+  </p>
+  <div class="card-deck d-flex flex-nowrap" style="overflow-x: scroll">
+    {% for course in course_list %}
+      {% if user.id == course.user_id %}
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; min-width: 18rem;">
+          <a class="text-white" href="{% url 'detail' course.id %}">
+            <h5 class="card-header">{{ course.name }} - {{ course.semester }} {{ course.semester_year }}</h5>
+          </a>
+          <div class="card-body bg-white text-secondary" style="border-radius: 2px;">
+            <p class="card-title">{{ course.description }}</p>
+            <div class="d-flex justify-content-end">
+              <a class="btn btn-warning text-white mr-1" href="{% url 'edit' course.id %}" role="button">Edit</a>
+              <a class="btn btn-danger float-right" href="{% url 'delete' course.id %}" role="button">Delete</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock content %}

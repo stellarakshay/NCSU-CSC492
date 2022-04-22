@@ -1,0 +1,29 @@
+<!-- BZM 5.5.1 Add/Edit Students (view student stats) !-->
+{% extends '_base.html' %}
+{% block content %}
+
+
+<table>
+    <tr>
+        <th>Student Email</th>
+        <th>Enrolled Time</th>
+
+    </tr>
+    {% for student in student_list %}
+    <tr> 
+        <td>{{ student.student_email}} </td>
+        <td>{{ student.timestamp }} </td>
+         <td>
+            <a class="btn btn-primary" href="{% url 'view_student_stat' student.id %}" role="button"> view </a>
+            <a class="btn btn-primary" href="{% url 'enrollment_delete' student.id %}" role="button"> delete </a>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+    <form method="get" action="{% url 'search_student' course_id%}">
+  Search Student by email:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+{% endblock content %}

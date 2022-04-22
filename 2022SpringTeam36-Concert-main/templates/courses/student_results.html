@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+{% block content %}
+<!--     {% if latest_question_list %}
+    <ul>
+    {% for course in course_list %}
+        <li><a href="/courses/{{ course.id }}/">{{ course.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+{% if results %}
+
+ <table>
+    <tr>
+        <th>Student Email</th>
+        <th>Enrolled Time</th>
+
+    </tr>
+	{% for result in results %}
+    <tr>
+    	<td>{{ result.student_email}} </td>
+        <td>{{ result.timestamp }} </td>
+         <td>
+            <a class="btn btn-primary" href="{% url 'view_student_stat' result.id %}" role="button"> view </a>
+
+        </td>
+
+    </tr>
+    {% endfor %}
+<form method="get" action="{% url 'search_course' %}" >
+  Search Courses:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+</table>
+{% else %}
+    <h3 class='error'>Please enter a valid student email</h3>
+    <<form method="get" action="{% url 'search_student' course_id%}">
+  Search Student:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+{% endif %}
+{% endblock content %}

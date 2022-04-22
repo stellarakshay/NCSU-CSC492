@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+{% block content %}
+<!--     {% if latest_question_list %}
+    <ul>
+    {% for course in course_list %}
+        <li><a href="/courses/{{ course.id }}/">{{ course.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %} -->
+{% if results %}
+
+ <table>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Instructor</th>
+
+    </tr>
+	{% for result in results %}
+    <tr> 
+    	<td>{{ result.id}} </td>
+        <td>{{ result.name }} </td>
+        <td>{{ result.instructor }} </td>
+
+    </tr>
+    {% endfor %}
+<form method="get" action="{% url 'search_course' %}" >
+  Search Courses:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+  <input type="submit" value="Search" />
+</form>
+</table>
+{% else %}
+    <h3 class='error'>Please enter a valid ID</h3>
+    <form method="get" action="{% url 'search_course' %}">
+      Search Courses:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+      <input type="submit" value="Search" />
+    </form>
+{% endif %}
+{% endblock content %}

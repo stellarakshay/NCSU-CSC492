@@ -1,0 +1,48 @@
+<!-- BZM 5.5.1 Add/Edit Students !-->
+{% extends '_base.html' %}
+{% block content %}
+
+{% if user.username != 'test2' %}
+    <p>
+    <a class="btn btn-primary" href="{% url 'manage_enrollment' course.id %}" role="button"> Go back to Manage Enrollment</a>
+    </p>
+
+
+    <div class="row">
+    <div class="col-sm-6">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title">You can enroll a single student by entering information here:</h5>
+<form action="{%  url 'enroll_single' course.id %}" method="POST">
+{% csrf_token %}
+    <label for="student_name">Student Name: </label>
+    <input id="student_name" type="text" name="student_name" >
+    <br><label for="student_email">Student Email: </label>
+    <input id="student_email" type="text" name="student_email" >
+    <br><input class="btn btn-primary " type="submit" value="Add">
+</form>
+    </div>
+    </div>
+    </div>
+     <div class="col-sm-6">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title">You can also enroll all students by uploading a file here:</h5>
+        <div class="input-group">
+            <div class="custom-file">
+                <input  type="file" class="custom-file-input" id="myfile" >
+                <label class="custom-file-label" for="myfile">Choose File</label>
+            </div>
+            <div class="input-group-append">
+                <input class="btn btn-primary " type="submit" name="submit" value="Upload" />
+            </div>
+            </form>
+    </div>
+    </div>
+    </div>
+</div>
+    </div>
+{% else %}
+Permission deny
+{% endif %}
+{% endblock content %}
